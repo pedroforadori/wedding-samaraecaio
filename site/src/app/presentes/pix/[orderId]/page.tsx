@@ -33,6 +33,16 @@ export default async function PresentePixPage({
 
   // O txid identifica o presente no extrato dos noivos.
   const code = giftPixCode(order.amountCents, order.id);
+  if (!code) {
+    return (
+      <GiftResultCard eyebrow="Pix" title="Pix indisponível">
+        <p className="mt-6 text-sm text-ink/70">
+          O pagamento via Pix está temporariamente indisponível. Tente
+          novamente mais tarde.
+        </p>
+      </GiftResultCard>
+    );
+  }
   const qr = await pixQrDataUrl(code);
 
   return (

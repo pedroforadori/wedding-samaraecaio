@@ -11,14 +11,16 @@ export function Footer() {
         <p className="text-sm text-ink/70">
           {wedding.city}, {wedding.state}
         </p>
-        <a
-          href={wedding.instagramUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="text-sm tracking-wide text-gold-deep underline decoration-gold/40 underline-offset-4 hover:decoration-gold"
-        >
-          {wedding.instagramHandle}
-        </a>
+        {wedding.instagramUrl && wedding.instagramHandle && (
+          <a
+            href={wedding.instagramUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="text-sm tracking-wide text-gold-deep underline decoration-gold/40 underline-offset-4 hover:decoration-gold"
+          >
+            {wedding.instagramHandle}
+          </a>
+        )}
         <p className="mt-4 text-xs text-ink/50">{wedding.domain}</p>
         <a
           href="https://www.pennecasamentos.com.br/"

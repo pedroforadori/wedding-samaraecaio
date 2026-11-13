@@ -1,8 +1,8 @@
 /**
- * Fundo decorativo que aproxima o estilo da aquarela de praia enviada pela
- * Camila (issue #8, litoral de São Miguel dos Milagres): ondas sobrepostas
+ * Fundo decorativo no estilo de uma aquarela de praia (litoral de São Miguel
+ * dos Milagres): ondas sobrepostas
  * com uma textura de turbulência SVG para simular o efeito de pincel/aquarela.
- * Placeholder — trocar pela arte original assim que o PDF estiver disponível.
+ * Placeholder — trocar por uma aquarela do casal quando houver.
  */
 export function WatercolorWaves({
   className = "",

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { SimplePageLayout } from "@/components/SimplePageLayout";
 import { PendingNote } from "@/components/PendingNote";
-import { chaBar } from "@/content/wedding";
+import { chaBar, pageTitle } from "@/content/wedding";
 
-export const metadata: Metadata = { title: "Chá Bar | Camila e Victor" };
+export const metadata: Metadata = { title: pageTitle("Chá Bar") };
 
 export default function ChaBarPage() {
   return (

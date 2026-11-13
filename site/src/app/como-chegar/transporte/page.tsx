@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { comoChegar } from "@/content/wedding";
+import { comoChegar, pageTitle } from "@/content/wedding";
 import { renderPhone } from "@/lib/contact-links";
 
 export const metadata: Metadata = {
-  title: "Motoristas, Transfer e Farmácia | Camila e Victor",
+  title: pageTitle("Motoristas, Transfer e Farmácia"),
 };
 
 export default function TransporteFarmaciaPage() {

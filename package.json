@@ -1,9 +1,8 @@
 {
-  "name": "wedding-camilaevictoremmilagres",
+  "name": "wedding-samaraecaio",
   "private": true,
   "workspaces": [
-    "site",
-    "bot"
+    "site"
   ],
   "scripts": {
     "dev": "npm run dev -w site",

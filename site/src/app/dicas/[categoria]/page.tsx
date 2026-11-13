@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DicaCard } from "@/components/DicaCard";
-import { dicas } from "@/content/wedding";
+import { dicas, pageTitle } from "@/content/wedding";
 
 export function generateStaticParams() {
   return dicas.sections.map((section) => ({ categoria: section.key }));
@@ -14,9 +14,7 @@ export async function generateMetadata({
   const { categoria } = await params;
   const section = dicas.sections.find((s) => s.key === categoria);
   return {
-    title: section
-      ? `${section.title} | Dicas | Camila e Victor`
-      : "Dicas | Camila e Victor",
+    title: pageTitle(section ? `${section.title} | Dicas` : "Dicas"),
   };
 }
 

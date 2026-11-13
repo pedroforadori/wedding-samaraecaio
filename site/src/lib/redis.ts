@@ -10,3 +10,13 @@ export function getRedis(): Redis | null {
   if (!url || !token) return null;
   return new Redis({ url, token });
 }
+
+// Prefixo de todas as chaves do site no Redis. Padrão "samaraecaio", para que
+// os dados deste casamento nunca se misturem com os de outro site que use o
+// mesmo banco Upstash (ex.: o de Camila & Victor, que usa "site:"). Pode ser
+// sobrescrito com REDIS_KEY_PREFIX (ex.: "samaraecaio-dev" para testes locais).
+const KEY_PREFIX = process.env.REDIS_KEY_PREFIX?.trim() || "samaraecaio";
+
+export function redisKey(name: string): string {
+  return `${KEY_PREFIX}:${name}`;
+}

@@ -28,7 +28,7 @@ function renderDescriptionParagraph(paragraph: string) {
 export function ScheduleDayCard({ day }: { day: ScheduleDay }) {
   return (
     <div>
-      <ScheduleDayIcon day={day.day as 1 | 2 | 3} />
+      {day.icon && <ScheduleDayIcon icon={day.icon} />}
       <p className="mt-4 font-body text-xs uppercase tracking-[0.3em] text-gold">
         {day.date}
       </p>
@@ -92,8 +92,11 @@ export function ScheduleDayCard({ day }: { day: ScheduleDay }) {
         )}
       </dl>
 
-      {day.day !== 2 && (
-        <DressCodeIllustration day={day.day as 1 | 3} />
+      {day.dressIllustration && (
+        <DressCodeIllustration
+          image={day.dressIllustration}
+          dressCode={day.dressCode}
+        />
       )}
       {day.illustrationNote && (
         <p className="mx-auto mt-4 max-w-xs text-center text-sm text-ink/60">

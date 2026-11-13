@@ -1,10 +1,10 @@
-import { getRedis } from "@/lib/redis";
+import { getRedis, redisKey } from "@/lib/redis";
 
-const COUNTER_KEY = "site:visits";
+const COUNTER_KEY = redisKey("visits");
 type DeviceType = "mobile" | "tablet" | "desktop";
 
 function deviceKey(device: DeviceType) {
-  return `site:visits:device:${device}`;
+  return redisKey(`visits:device:${device}`);
 }
 
 // Guardado só para consulta futura (ver /api/visits GET) — não exibido no

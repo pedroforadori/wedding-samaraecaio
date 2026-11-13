@@ -1,10 +1,10 @@
-import { getRedis } from "./redis";
+import { getRedis, redisKey } from "./redis";
 
-const RSVP_KEY = "site:rsvps";
+const RSVP_KEY = redisKey("rsvps");
 // Telefones (só dígitos) que já confirmaram — um telefone vale por um RSVP,
 // que já inclui os acompanhantes. O SADD garante isso mesmo com dois envios
 // simultâneos.
-const RSVP_PHONES_KEY = "site:rsvp-phones";
+const RSVP_PHONES_KEY = redisKey("rsvp-phones");
 
 export type RsvpGuest = { fullName: string; isPlusOne: boolean };
 export type RsvpEntry = {

@@ -1,40 +1,27 @@
 import Image from "next/image";
+import type { ScheduleImage } from "@/content/wedding";
 
 /**
- * Aquarelas de traje por dia (issue #4). O dia 2 (Day Off) não tem traje
- * sugerido, então não entra aqui.
+ * Aquarela do traje sugerido do dia (`dressIllustration` em
+ * content/wedding.ts). Sem legenda, a pedido dos noivos.
  */
-const days = {
-  1: {
-    label: "Roupa branca",
-    src: "/images/traje-dia1.png",
-    width: 950,
-    height: 1254,
-  },
-  3: {
-    label: "Social",
-    src: "/images/traje-dia3.png",
-    width: 972,
-    height: 1316,
-  },
-} as const;
-
-export function DressCodeIllustration({ day }: { day: 1 | 3 }) {
-  const config = days[day];
-
+export function DressCodeIllustration({
+  image,
+  dressCode,
+}: {
+  image: ScheduleImage;
+  dressCode?: string;
+}) {
   return (
     <div className="mx-auto mt-6 w-40 sm:w-48">
       <Image
-        src={config.src}
-        alt={`Aquarela do traje sugerido para "${config.label}"`}
-        width={config.width}
-        height={config.height}
+        src={image.src}
+        alt={dressCode ? `Aquarela do traje sugerido: ${dressCode}` : "Aquarela do traje sugerido"}
+        width={image.width}
+        height={image.height}
         sizes="12rem"
         className="block h-auto w-full"
       />
-      <p className="mt-2 text-center text-[10px] uppercase tracking-[0.2em] text-ink/50">
-        Traje sugerido — {config.label}
-      </p>
     </div>
   );
 }

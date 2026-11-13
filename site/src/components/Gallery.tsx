@@ -1,5 +1,5 @@
 import { GalleryGrid } from "./GalleryGrid";
-import { gallery } from "@/content/wedding";
+import { couple, gallery } from "@/content/wedding";
 
 const placeholderTiles = Array.from({ length: 8 });
 
@@ -11,7 +11,7 @@ export function Gallery() {
       <div className="mx-auto max-w-4xl">
         <div className="flex flex-col items-center text-center">
           <p className="font-script text-4xl leading-none text-gold-deep sm:text-5xl">
-            Camila e Victor
+            {couple.names}
           </p>
           <h1 className="mt-3 font-display text-4xl text-gold">Galeria</h1>
           <span aria-hidden="true" className="mt-4 h-px w-16 bg-sand-dark" />

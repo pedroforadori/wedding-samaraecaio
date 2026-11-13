@@ -5,6 +5,7 @@ import { CopyPixButton } from "./CopyPixButton";
 // QR Code Pix sem valor, para quem prefere presentear direto na conta.
 export async function DirectPixBlock() {
   const code = giftPixCode(undefined, "LISTANOIVOS");
+  if (!code) return null;
   const qr = await pixQrDataUrl(code);
 
   return (

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Monogram } from "./Monogram";
-import { primaryNav } from "@/content/wedding";
+import { couple, primaryNav } from "@/content/wedding";
 
 function MobileMenu({ onClose }: { onClose: () => void }) {
   return (
@@ -12,7 +12,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
         <Link href="/#topo" onClick={onClose} className="flex items-center gap-3">
           <Monogram className="h-10 w-auto" />
           <span className="translate-y-[0.15em] font-script text-4xl leading-none text-gold-deep sm:text-5xl">
-            Camila e Victor
+            {couple.names}
           </span>
         </Link>
         <button
@@ -67,7 +67,7 @@ export function Header() {
           <Link href="/#topo" className="flex items-center gap-3">
             <Monogram className="h-10 w-auto" />
             <span className="translate-y-[0.15em] font-script text-4xl leading-none text-gold-deep sm:text-5xl">
-              Camila e Victor
+              {couple.names}
             </span>
           </Link>
 

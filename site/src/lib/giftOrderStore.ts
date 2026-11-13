@@ -1,6 +1,6 @@
-import { getRedis } from "./redis";
+import { getRedis, redisKey } from "./redis";
 
-const ORDERS_KEY = "site:gift-orders";
+const ORDERS_KEY = redisKey("gift-orders");
 
 // Um Pix pendente "segura" a cota por esse tempo, para dois convidados não
 // escolherem a última cota ao mesmo tempo. Depois disso, se os noivos não

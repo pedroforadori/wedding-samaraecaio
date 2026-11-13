@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { DirectPixBlock } from "@/components/DirectPixBlock";
 import { GiftList } from "@/components/GiftList";
 import { availableGifts } from "@/content/giftList";
@@ -18,6 +19,8 @@ export const metadata: Metadata = {
 };
 
 export default async function PresentesPage() {
+  if (!presentes.enabled) notFound();
+
   const [takenQuotas, quantities] = await Promise.all([
     getTakenQuotas(),
     getGiftQuantities(),
