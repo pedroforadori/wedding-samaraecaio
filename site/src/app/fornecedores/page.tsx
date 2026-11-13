@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { SimplePageLayout } from "@/components/SimplePageLayout";
 import { PendingNote } from "@/components/PendingNote";
-import { fornecedores } from "@/content/wedding";
+import { fornecedores, pageTitle } from "@/content/wedding";
 
-export const metadata: Metadata = { title: "Fornecedores | Camila e Victor" };
+export const metadata: Metadata = { title: pageTitle("Fornecedores") };
 
 export default function FornecedoresPage() {
   return (

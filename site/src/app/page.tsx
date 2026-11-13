@@ -7,6 +7,7 @@ import { DicasSection } from "@/components/DicasSection";
 import { ComoChegarSection } from "@/components/ComoChegarSection";
 import { PresentesSection } from "@/components/PresentesSection";
 import { MensagensSection } from "@/components/MensagensSection";
+import { guestbook, presentes } from "@/content/wedding";
 
 // Página única com seções por âncora (replicando o menu do site de
 // referência — ver `primaryNav` em content/wedding.ts). `presentes` lê as
@@ -25,8 +26,8 @@ export default function Home() {
       <RsvpSection />
       <DicasSection />
       <ComoChegarSection />
-      <PresentesSection />
-      <MensagensSection />
+      {presentes.enabled && <PresentesSection />}
+      {guestbook.enabled && <MensagensSection />}
     </>
   );
 }

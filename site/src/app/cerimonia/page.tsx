@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { SimplePageLayout } from "@/components/SimplePageLayout";
 import { PendingNote } from "@/components/PendingNote";
-import { cerimonia } from "@/content/wedding";
+import { cerimonia, pageTitle } from "@/content/wedding";
 
-export const metadata: Metadata = { title: "Cerimônia | Camila e Victor" };
+export const metadata: Metadata = { title: pageTitle("Cerimônia") };
 
 export default function CerimoniaPage() {
   return (

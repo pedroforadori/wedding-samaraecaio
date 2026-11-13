@@ -4,6 +4,8 @@ import { SquiggleCorner } from "./SquiggleCorner";
 import { dicas } from "@/content/wedding";
 
 export function DicasSection() {
+  const transfer = dicas.transfer;
+
   return (
     <section
       id="dicas"
@@ -27,9 +29,10 @@ export function DicasSection() {
         <p className="mt-4 rounded-xl border border-gold/30 bg-gold/10 px-4 py-3 text-sm text-gold-deep">
           {dicas.warning}
         </p>
+        {transfer && (
         <div className="mt-4 space-y-1 rounded-xl border border-gold/30 bg-gold/10 px-4 py-3 text-sm text-gold-deep">
-          {dicas.transfer.paragraphs.map((paragraph) => {
-            const [before, after] = paragraph.split(dicas.transfer.highlight);
+          {transfer.paragraphs.map((paragraph) => {
+            const [before, after] = paragraph.split(transfer.highlight);
             return (
               <p key={paragraph}>
                 {after === undefined ? (
@@ -37,7 +40,7 @@ export function DicasSection() {
                 ) : (
                   <>
                     {before}
-                    <strong className="font-semibold">{dicas.transfer.highlight}</strong>
+                    <strong className="font-semibold">{transfer.highlight}</strong>
                     {after}
                   </>
                 )}
@@ -45,9 +48,10 @@ export function DicasSection() {
             );
           })}
         </div>
+        )}
       </div>
 
-      <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-6 sm:grid-cols-4">
+      <div className="mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-3">
         {dicas.sections.map((section) => (
           <Link
             key={section.key}

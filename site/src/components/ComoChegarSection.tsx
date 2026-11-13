@@ -23,15 +23,17 @@ export function ComoChegarSection() {
           ))}
         </div>
 
-        <div className="mt-8 overflow-hidden rounded-2xl shadow-md">
-          <Image
-            src="/images/mapa-como-chegar.jpg"
-            alt="Mapa ilustrado da região de São Miguel dos Milagres, com a Casa Marceneiro (local do casamento), a Casa Orla Milagres (casa dos noivos), pousadas, restaurante e praias próximas"
-            width={1690}
-            height={1120}
-            className="h-auto w-full"
-          />
-        </div>
+        {comoChegar.map && (
+          <div className="mt-8 overflow-hidden rounded-2xl shadow-md">
+            <Image
+              src={comoChegar.map.src}
+              alt={comoChegar.map.alt}
+              width={comoChegar.map.width}
+              height={comoChegar.map.height}
+              className="h-auto w-full"
+            />
+          </div>
+        )}
         <Link
           href="/como-chegar/transporte"
           className="mt-4 inline-block text-sm text-gold-deep underline decoration-gold/40 underline-offset-2 hover:text-gold"

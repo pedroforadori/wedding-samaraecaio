@@ -4,10 +4,12 @@ import localFont from "next/font/local";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CountdownCorner } from "@/components/Countdown";
+import { couple, seo, wedding } from "@/content/wedding";
 import "./globals.css";
 
-// Fontes enviadas pela Camila: Cinzel para os textos, Lile Dahliya Script
-// para o nome dos noivos.
+// Fontes herdadas do site anterior: Cinzel para os textos, Lile Dahliya
+// Script para o nome dos noivos. O briefing sugere ITC Edwardian Script e
+// Exmouth — TODO: trocar quando houver os arquivos (licenciados) das fontes.
 const displaySerif = localFont({
   variable: "--font-display",
   src: [
@@ -30,15 +32,13 @@ const body = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Camila e Victor | São Miguel dos Milagres",
-  description:
-    "Site do casamento de Camila e Victor, em São Miguel dos Milagres, Alagoas. Três dias de celebração à beira-mar.",
-  metadataBase: new URL("https://www.camilaevictoremmilagres.com.br"),
+  title: seo.title,
+  description: seo.description,
+  metadataBase: new URL(wedding.siteUrl),
   openGraph: {
-    title: "Camila e Victor",
-    description:
-      "Site do casamento de Camila e Victor, em São Miguel dos Milagres, Alagoas.",
-    siteName: "Camila e Victor",
+    title: couple.names,
+    description: seo.shortDescription,
+    siteName: couple.names,
     locale: "pt_BR",
     type: "website",
   },

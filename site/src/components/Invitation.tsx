@@ -2,7 +2,8 @@ import { invitation, wedding } from "@/content/wedding";
 
 function renderParagraph(text: string, key: number) {
   const handle = wedding.instagramHandle;
-  if (!text.includes(handle)) {
+  const url = wedding.instagramUrl;
+  if (!handle || !url || !text.includes(handle)) {
     return (
       <p key={key} className="text-pretty">
         {text}
@@ -15,7 +16,7 @@ function renderParagraph(text: string, key: number) {
     <p key={key} className="text-pretty">
       {before}
       <a
-        href={wedding.instagramUrl}
+        href={url}
         target="_blank"
         rel="noreferrer"
         className="font-medium text-gold-deep underline decoration-gold/40 underline-offset-4 hover:text-gold"
