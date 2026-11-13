@@ -45,11 +45,14 @@ export function pageTitle(title: string): string {
 export type HeroImage = { src: string; alt: string };
 
 // Capa da home. O briefing pede aquarela + 3 fotos do Raizeiro / Milagres,
-// alternando automaticamente. Enquanto a lista estiver vazia, a capa mostra só
-// a seção em papel com monograma, nomes e data.
-// TODO: imagens da capa (e o carrossel automático).
+// alternando automaticamente, na ordem desta lista. Com uma imagem só, ela
+// fica fixa; com a lista vazia, a capa mostra só a seção em papel com
+// monograma, nomes e data.
+// TODO: imagens da capa (aquarela + 3 fotos do Raizeiro / Milagres).
 export const hero = {
   images: [] as HeroImage[],
+  /** Tempo que cada imagem fica na tela antes de trocar, em milissegundos. */
+  intervalMs: 5000,
 };
 
 // TODO: texto aos amigos e familiares — "será enviado posteriormente".

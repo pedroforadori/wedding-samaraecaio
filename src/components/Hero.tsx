@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { HeroCarousel } from "./HeroCarousel";
 import { Monogram } from "./Monogram";
 import { WatercolorWaves } from "./WatercolorWaves";
 import { couple, hero, wedding } from "@/content/wedding";
@@ -12,24 +12,16 @@ const filmGrain = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
 // A foto tem altura proporcional à largura (76,25vw no celular, 64,06vw a
 // partir do tablet, até a altura da tela), centralizada em "cover", com um
 // véu de luz quente, grão de filme e um esfumado cor de papel no topo
-// emendando com o header. Sem imagens em `hero.images`, só a seção em papel
-// aparece. Por ora usa a primeira imagem; o carrossel automático pedido no
-// briefing entra quando as imagens chegarem.
+// emendando com o header. As imagens de `hero.images` se alternam sozinhas
+// (HeroCarousel); sem nenhuma, só a seção em papel aparece.
 export function Hero() {
-  const cover = hero.images[0];
+  const hasImages = hero.images.length > 0;
 
   return (
     <section id="topo" className="relative scroll-mt-24">
-      {cover && (
+      {hasImages && (
       <div className="relative h-[76.25vw] max-h-screen overflow-hidden md:h-[64.06vw]">
-        <Image
-          src={cover.src}
-          alt={cover.alt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+        <HeroCarousel images={hero.images} intervalMs={hero.intervalMs} />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-30"
