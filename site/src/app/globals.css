@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  /* Paleta de texto/destaques amostrada do convite e do manual dos
+     padrinhos (set/2026): dourado do monograma e do nome dos noivos,
+     grafite dos textos em caixa alta e fundo off-white do papel.
+     --color-gold é para títulos e textos grandes; --color-gold-deep é
+     o mesmo tom escurecido para textos pequenos, links e botões, onde
+     o dourado claro não teria contraste suficiente sobre o fundo. */
+  --color-foam: #f3f0e9;
+  --color-sand: #e6dccb;
+  --color-sand-dark: #cbb793;
+  --color-gold: #a8844f;
+  --color-gold-deep: #7f6139;
+  --color-ink: #2b2828;
+  --color-taupe: #7c8a63;
+
+  /* Azuis da paleta do save the date — mantidos só para a ilustração
+     de ondas em aquarela (WatercolorWaves), não para texto. */
+  --color-ocean: #6d93b0;
+  --color-ocean-deep: #355e82;
+
+  /* Terracota do rabisco decorativo (squiggle) usado nos cards de Dicas do
+     site de referência (Wix, ver issue #11) — cor amostrada da própria
+     imagem de referência, não faz parte da paleta oficial de 5 swatches
+     dos noivos. Usar só nesse elemento decorativo específico. */
+  --color-terracotta: #b98671;
+
+  /* Textura de papel principal (foto de referência enviada pelos
+     noivos), usada como fundo do body inteiro para que o site nunca
+     mostre cor sólida "chapada", igual à referência. Aplicada com
+     background-blend-mode: multiply sobre --color-foam para herdar o
+     tom creme da paleta em vez do branco/cinza da foto original.
+     Existe também /images/textura-linho.png (grão de linho mais
+     grosso) via .texture-linen, hoje sem uso: os noivos acharam o
+     linho escuro demais no convite e nas Dicas (set/2026). */
+  --texture-paper-image: url("/images/textura-papel.png");
+  --texture-linen-image: url("/images/textura-linho.png");
+}
+
+@theme inline {
+  --color-foam: var(--color-foam);
+  --color-sand: var(--color-sand);
+  --color-sand-dark: var(--color-sand-dark);
+  --color-gold: var(--color-gold);
+  --color-gold-deep: var(--color-gold-deep);
+  --color-ocean: var(--color-ocean);
+  --color-ocean-deep: var(--color-ocean-deep);
+  --color-ink: var(--color-ink);
+  --color-taupe: var(--color-taupe);
+  --color-terracotta: var(--color-terracotta);
+
+  --font-display: var(--font-display);
+  --font-script: var(--font-script);
+  --font-body: var(--font-body);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-foam);
+  background-image: var(--texture-paper-image);
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-blend-mode: multiply;
+  color: var(--color-ink);
+}
+
+/* A Lile Dahliya Script tem traço muito fino e minúsculas baixas: sem
+   engrossar, o nome dos noivos fica ilegível nos tamanhos menores
+   (cabeçalho, convite, rodapé). O contorno em em acompanha o tamanho. */
+.font-script {
+  -webkit-text-stroke: 0.01em currentColor;
+}
+
+.texture-paper {
+  background-image: var(--texture-paper-image);
+  background-repeat: repeat;
+  background-blend-mode: multiply;
+}
+
+.texture-linen {
+  background-image: var(--texture-linen-image);
+  background-repeat: repeat;
+  background-blend-mode: multiply;
+}

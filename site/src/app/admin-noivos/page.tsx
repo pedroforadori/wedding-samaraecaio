@@ -1,0 +1,94 @@
+import Link from "next/link";
+import { formatBRL } from "@/lib/currency";
+import { listGiftOrders } from "@/lib/giftOrderStore";
+import { listGuestbookEntries } from "@/lib/guestbookStore";
+import { listRsvps } from "@/lib/rsvpStore";
+import { getVisitStats } from "@/lib/visitStats";
+import { logout } from "./login/actions";
+import { VisitsChart } from "./VisitsChart";
+
+export const dynamic = "force-dynamic";
+
+export default async function AdminNoivosPage() {
+  const rsvps = await listRsvps();
+  const messages = await listGuestbookEntries();
+  const confirmedGuests = rsvps.reduce(
+    (total, entry) =>
+      entry.events.length > 0 && !entry.events.includes("Não poderei comparecer")
+        ? total + entry.guests.length
+        : total,
+    0,
+  );
+  const visitStats = await getVisitStats();
+  const paidGifts = (await listGiftOrders()).filter((order) => order.status === "pago");
+  const paidTotal = paidGifts.reduce((sum, order) => sum + order.amountCents, 0);
+
+  const links = [
+    {
+      href: "/admin-noivos/rsvps",
+      title: "RSVPs",
+      description: "Lista de convidados, telefones e presença por evento.",
+      stat: `${rsvps.length} respostas · ${confirmedGuests} confirmados`,
+    },
+    {
+      href: "/admin-noivos/mensagens",
+      title: "Mensagens",
+      description: "Mural de recados dos convidados, com e-mail quando informado.",
+      stat: `${messages.length} mensagens`,
+    },
+    {
+      href: "/admin-noivos/presentes",
+      title: "Presentes",
+      description: "Presentes recebidos, Pix a confirmar e cotas por experiência.",
+      stat: `${paidGifts.length} presentes · ${formatBRL(paidTotal)}`,
+    },
+  ];
+
+  return (
+    <section className="texture-paper px-6 py-24">
+      <div className="mx-auto max-w-3xl">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h1 className="font-display text-4xl text-gold">
+              Área dos noivos
+            </h1>
+            <span
+              aria-hidden="true"
+              className="mt-4 block h-px w-16 bg-sand-dark"
+            />
+          </div>
+          <form action={logout}>
+            <button
+              type="submit"
+              className="text-sm text-gold-deep underline decoration-gold/40 underline-offset-4 hover:text-gold"
+            >
+              Sair
+            </button>
+          </form>
+        </div>
+
+        <div className="mt-10">
+          <VisitsChart stats={visitStats} />
+        </div>
+
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="rounded-2xl border border-sand-dark/60 bg-sand/30 px-6 py-6 transition-colors hover:bg-sand/50"
+            >
+              <p className="font-display text-2xl text-gold">
+                {link.title}
+              </p>
+              <p className="mt-2 text-sm text-ink/70">{link.description}</p>
+              <p className="mt-4 text-xs uppercase tracking-wide text-gold-deep">
+                {link.stat}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
