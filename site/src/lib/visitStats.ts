@@ -1,4 +1,4 @@
-import { getRedis } from "@/lib/redis";
+import { getRedis, redisKey } from "@/lib/redis";
 
 export type VisitStats = {
   count: number;
@@ -22,10 +22,10 @@ export async function getVisitStats(): Promise<VisitStats | null> {
 
   const [count, mobile, tablet, desktop] = await redis
     .pipeline()
-    .get<number>("site:visits")
-    .get<number>("site:visits:device:mobile")
-    .get<number>("site:visits:device:tablet")
-    .get<number>("site:visits:device:desktop")
+    .get<number>(redisKey("visits"))
+    .get<number>(redisKey("visits:device:mobile"))
+    .get<number>(redisKey("visits:device:tablet"))
+    .get<number>(redisKey("visits:device:desktop"))
     .exec<[number | null, number | null, number | null, number | null]>();
 
   return {

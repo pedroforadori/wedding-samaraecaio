@@ -1,8 +1,8 @@
-import { getRedis } from "./redis";
+import { getRedis, redisKey } from "./redis";
 
 // Mural de recados no Redis, como RSVP e presentes — antes gravava em
 // data/guestbook.jsonl, o que falhava na Vercel (sistema de arquivos só leitura).
-const GUESTBOOK_KEY = "site:guestbook";
+const GUESTBOOK_KEY = redisKey("guestbook");
 
 export type GuestbookEntry = {
   name: string;

@@ -1,4 +1,5 @@
 import { findGift } from "@/content/giftList";
+import { getPixConfig } from "@/lib/giftPix";
 import {
   countTakenQuotas,
   listGiftOrders,
@@ -99,7 +100,7 @@ export async function POST(request: Request) {
     return Response.json({ url: session.url });
   }
 
-  if (!(await saveGiftOrder(order))) {
+  if (!getPixConfig() || !(await saveGiftOrder(order))) {
     return Response.json({ error: "Pix indisponível no momento." }, { status: 503 });
   }
   return Response.json({ url: `/presentes/pix/${order.id}` });

@@ -1,10 +1,10 @@
 import { gifts } from "@/content/giftList";
-import { getRedis } from "./redis";
+import { getRedis, redisKey } from "./redis";
 
 // Nº de cotas ajustado pelos noivos no admin. Só existe entrada para os
 // presentes que já foram ajustados; os demais seguem o `quantity` de
 // content/giftList.ts.
-const QUANTITIES_KEY = "site:gift-quantities";
+const QUANTITIES_KEY = redisKey("gift-quantities");
 
 /** Cotas efetivas por presente: ajuste do admin ou, sem ele, o valor da planilha. */
 export async function getGiftQuantities(): Promise<Record<string, number>> {
